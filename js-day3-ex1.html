@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise-1</title>
+</head>
+<body>
+<h1>Øvelse 1</h1>
+
+<div class="myClass" id="d1" style="width: 100px; margin: 1px;">&nbsp;</div>
+<div class="myClass" id="d2" style="width: 100px; margin: 1px;">&nbsp;</div>
+<div class="myClass" id="d3" style="width: 100px; margin: 1px;">&nbsp;</div>
+
+<button id="changeColorsButton" style="margin-top: 10px;">Change Colors</button>
+
+<div style="border: 2px solid black; margin-top: 10px; width: 35px; border-radius: 3px;">
+    <a href="/">Back</a>
+</div>
+
+<div id="textDiv" style="width: 500px; height: 235px; border: 2px solid black; margin-top: 10px; border-radius: 4px;">
+    Jeg har lavet lidt om på øvelsen og givet mine diver den samme klasse
+    da jeg ikke vil have at alle diver skal tilføjes til node-listen
+    ved brug af querySelectorAll.
+    Jeg har også gjort brug af getElementById, eksempelvis med:
+    "changeColorsButton". Det gjorde jeg i forbindelse med at
+    skulle tilføje et event til min knap, et "click"-event, som 
+    skal ændre farven på mine diver. 
+    I opgave a tilføjer jeg mine diver til en nodeliste, vha querySelectorAll,
+    og gør det ud fra mine klasse "myClass". Efterfølgende itererer jeg gennem
+    nodelisten og sætter hvert element (hver div), til baggrundsfarven "lightblue".
+    I opgave b tilføjer jeg et event til min knap, som udløses når en bruger
+    "clicker" på den (et "click-event"). Hefter itererer jeg gennem div-nodelisten
+    og sætter hver divs baggrundsfarve til farven svarende til farven på det 
+    givende index i min liste "uniqueColors"
+</div>
+
+<script>
+ 
+    //--- Opgave a ---// 
+    const divs = document.querySelectorAll(".myClass"); //Bruger en "class", så vi ikke fanger samtlige diver
+    
+
+    for (let i = 0; i < divs.length; i++) {
+        divs[i].style.backgroundColor = "lightblue";
+    }
+
+    //--- Opgave b ---// 
+    const button = document.getElementById("changeColorsButton");
+    button.addEventListener("click", () => {
+        const uniqueColors = ["Blue", "violet", "pink"];
+        for (let i = 0; i < divs.length; i++) {
+            divs[i].style.backgroundColor = uniqueColors[i];
+        }
+    });
+</script>
+    
+</body>
+</html>

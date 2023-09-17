@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <h1>Øvelse4</h1>
+
+    <select id="car-selector">
+        <!-- Options will be populated by JavaScript -->
+      </select>
+      <h2>Selected Brand</h2>
+      <h4 id="car-make"></h4>
+
+      <div style="border: 2px solid black; margin-top: 10px; width: 35px; border-radius: 3px;">
+        <a href="/">Back</a>
+    </div>
+
+      <div id="textDiv" style="width: 400px; height: 150px; border: 2px solid black; margin-top: 10px; border-radius: 4px;">
+        I denne opgave brugte jeg et for-loop til at tilføjer
+        bilerne til vores select. Her lavede jeg for hver bil
+        en ny Option vha. Option objektets constructor. 
+        I opgave b oprettede jeg et nyt "change" event, 
+        som bliver brugt når en bruger ændrer noget i eksempelvis
+        en "select". Et 'change'-event udløses altså når en 
+        bruger ændrer valget i dropdown-menuen
+        Efterfølgende finder jeg vha. af 
+        getElementById frem til vores h4, "car-make", og sætter dens "innertext"
+        til det valgte bil mærke. 
+    </div>
+      
+
+
+      <script>
+
+      //---Opgave a---//
+      const cars = ["Ford", "WW", "Toyota", "Volvo"]; 
+      const dropdown1 = document.getElementById("car-selector");
+      
+      for (let index = 0; index < cars.length; index++) {
+        dropdown1[dropdown1.length] = new Option(cars[index], cars[index]);
+      }
+      //---Stack overflow forslag---//
+      //For-loopet interer gennem vores array.
+      //Så vil vi gerne have lavet en ny Option. En option er en ny option i vores Select. 
+      //dropdown1 er en reference til vores <select>
+      //dropdown1.lenght er længden på vores select
+      //Vi bruger efter følgende new Options constructor som skal have to argumenter.
+      //Det første er det der vil blive displayet
+      //Det andet argument er det som bliver sendt til serveren. Dette bruges til at indeftificere den valgte værdi på serveren. 
+
+      //---Opgave b---//
+      dropdown1.addEventListener('change', (event) => {
+        document.getElementById("car-make").innerText=event.target.value  //event.target repræsenterer vores Select. 
+      });                                                                 //value repræsenterer det valgte element
+        //Vi bruger 'change' når en "selection" i vores Select element er blevet ændret. 
+      </script>
+
+</body>
+</html>

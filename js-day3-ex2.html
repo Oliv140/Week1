@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .my-div {width: 25px; height: 25px;background-color:red; margin:1px;}
+    </style>
+</head>
+<body>
+
+    <h1>Øvelse 2</h1>
+
+<div id="outer">
+    <div class="my-div" id="div1"></div>
+    <div class="my-div" id="div2"></div>
+    <div class="my-div" id="div3"></div>
+    <div class="my-div" id="div4"></div>
+    <div class="my-div" id="div5"></div>
+    <div class="my-div" id="div6"></div>
+    <div class="my-div" id="div7"></div>
+    <div class="my-div" id="div8"></div>
+    <div class="my-div" id="div9"></div>
+    <div class="my-div" id="div10"></div>
+</div>
+
+<p id="p1"></p>
+
+<div id="textDiv" style="width: 500px; height: 220x; border: 2px solid black; margin-top: 10px; border-radius: 4px;">
+    Denne øvelse illustrerede meget godt Event Bubbling. 
+    Først blev der tilføjet en eventhandler ("click"-event) til en 
+    specifik div man kunne se i consolen at der blevet printet 
+    det ønskede resultat. Da der så skulle tilføjes ti diver, blev 
+    det også tydeligt at det ville være en temmelig uoverskuelig
+    opgave at tilføje event handlers til dem alle. 
+    Derfor blev der tilføjet en ydre div, rund om de originale diver.
+    Som jeg forstår det fungerer det sådan at når man klikker på 
+    et element vil der først blive tjekket om der er et event koblet til
+    det event. Hvis ikke der er det, vil der blive tjekket i det næste "lag".
+    "Klikhændelsen" på den yderste div virker på alle de indlejrede "diver".
+    Klikker man i øvrigt uden for en af diverne bliver vores p's innerText sat
+    til "outer".
+</div>
+
+
+<div style="border: 2px solid black; margin-top: 10px; width: 35px; border-radius: 3px;">
+    <a href="/">Back</a>
+</div>
+
+    <script>
+
+       document.getElementById("outer").onclick = (event) =>{
+        const id = event.target.id;
+        console.log("hi from div nr : " + id)
+        document.getElementById("p1").innerText=id
+       }
+       
+    </script>
+    
+    
+</body>
+</html>

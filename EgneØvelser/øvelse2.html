@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .my-div {width: 25px; height: 25px;background-color:red; margin:1px;}
+      </style>     
+</head>
+<body>
+    <div class="my-div" id = "id 1"></div>
+    <div class="my-div" id = "id 2"></div>
+    <p id = "p1"></p>
+
+
+    <script>
+        document.getElementById("id 1").onclick = (event) => {
+            const id = event.target.id;
+            console.log("hi from: " + id)
+            document.getElementById("p1").innerText=id;
+        }
+    </script>
+</body>
+</html>

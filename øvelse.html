@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise-1</title>
+</head>
+<body>
+<h1>Hello</h1>
+
+<div id="d1" style="width: 100px; margin: 1px;">&nbsp;</div>
+<div id="d2" style="width: 100px; margin: 1px;">&nbsp;</div>
+<div id="d3" style="width: 100px; margin: 1px;">&nbsp;</div>
+
+<button id="changeColorsButton" style="margin-top: 10px;">Change Colors</button>
+
+<div id="textDiv" style="width: 400px; height: 110px; border: 2px solid black; margin-top: 10px; border-radius: 4px;">
+    Jeg har gjort brug af document i denne øvelse,
+    helt specifikt: document.getElementById. Brugte særligt kommandoen 
+    til at sætte mine 'diver' ind i et array. Man kan også bruge 
+    document.querySelectorAll("div"). Synes dog ikke det giver 
+    særlig god mening at give alle diver den samme farve. 
+    (særligt fordi denne div også ville være grøn). 
+</div>
+
+<a href="/">back</a>
+
+
+
+<script>
+
+    //--- Opgave a ---// 
+    //Giv diverne en class og find dem vha. querySelector i stedet for at finde alle diver. 
+
+    //const divs = document.querySelectorAll("div"); -- Smart løsning, men synes ikke det er så smart at lave alle div en farve (men godt at vide)
+    
+    const divs = [document.getElementById("d1"), document.getElementById("d2"), document.getElementById("d3")]               
+
+    divs.forEach(div => {
+        div.style.backgroundColor="lightblue"
+    });
+
+    //----------------------------------------------------------------------------------------------------------
+
+    //--- Opgave B ---//
+    const Colors = ["Blue", "violet", "pink"]                           //Her laver jeg et array af farver
+    const button = document.getElementById("changeColorsButton");       //Her laver jeg en knap med id'et som jeg gav min knap tidligere
+
+    button.addEventListener("click", () =>{                             //Her tilføjer jeg et event (her et "click" event).  
+        for (let i = 0; i < divs.length; i++) {                         //Det er vigtigt at skrive 'click' da det specificerer event-typen
+            divs[i].style.backgroundColor = Colors[i];                  //Nu sættes hver div til en bestemt farve fra mit array
+        }
+    })
+
+</script>
+    
+</body>
+</html>

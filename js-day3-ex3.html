@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Øvelse 3</h1>
+    <ul id ="my-list"></ul>
+    
+
+    <form>
+        <input id = "input1" type="text">
+        <button id="add_btn">Tilføj navn</button>
+        <button id ="delete_first">Slet første navn</button>
+        <button id="delete_last">Slet sidste navn</button>
+    </form>
+
+    <div id="textDiv" style="width: 420px; height: 250px; border: 2px solid black; margin-top: 10px; border-radius: 4px;">
+        Først og fremmest bliver der lavet en liste i en 'function' vha. map,
+        hvor hvert navn bliver tilføjet til listen. Efterfølgende er der 
+        et par events, som sker når der bliver trykket (onclick) på knapperne.
+        Her bliver der gjort brug af et par smarte metoder:
+        <ul>
+            <li>*push(), som tilføjer et navn til listen.</li>
+            <li>*pop(), som sletter det sidste element i et array.</li>
+            <li>*shift(), som sletter det første element i et array.</li>
+        </ul> 
+        Synes i den grad at det er en opgave der tydeliggør at man skal have fat
+        i en bestemt knap, her ud fra id (getElementById), for at koble et event til.
+        Der er også blevet gjort brug af preventDefault(), som forhindrer siden i at 
+        genindlæse ved form-indsendelse.
+    </div>
+
+    <div style="border: 2px solid black; margin-top: 10px; width: 35px; border-radius: 3px;">
+        <a href="/">Back</a>
+    </div>
+
+
+    <script>
+        const names = ["Mickey", "Anders", "Rip", "Rap", "Rup"];
+
+        function createList(){
+            document.getElementById("my-list").innerHTML = names.map(name => `<li>${name}</li>`).join("");
+        };
+        createList();
+
+        document.getElementById("add_btn").onclick = (event) => {       
+            event.preventDefault();                                     //Forhindrer siden i at reloade
+            const NewName = document.getElementById("input1").value
+            names.push(NewName);
+            createList();
+        }
+
+        document.getElementById("delete_last").onclick = (event) => {
+            event.preventDefault();
+            names.pop();
+            createList();
+        }
+
+        document.getElementById("delete_first").onclick = (event) => {
+            event.preventDefault();
+            names.shift();
+            createList();
+        }
+        
+    </script>
+</body>
+</html>

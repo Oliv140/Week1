@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th><th>Year</th><th id = "makeId">Make</th><th id = "modelId">Model</th><th id = "priceId">Price</th>
+        </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+    </table>
+
+
+    <p>price</p>
+    <input id = "num1" type="text">
+    
+    <button id = "priceBtn">price less than</button>
+
+    <button id = "clearFilter">clear</button>
+
+    <br>
+    
+    <input id = "carMake" type="text">
+
+    <button id = "makeBtn">Brand</button>
+
+    <div id="textDiv" style="margin-left: 15px; width: 450px; height: 690px; border: 2px solid black; margin-top: 10px; border-radius: 4px;">
+        Først indsatte jeg cars-arrayet ind i mit table, 
+        her brugte jeg et for-loop. Bagefter refaktorerede jeg
+        funktionen så den tager imod et array som paramaeter. I opgave
+        C, lavede jeg et event på en knap, der så skal vise alle biler 
+        under en bestemt pris. Her laver jeg et nytt array bestående af biler 
+        under en hvis pris, og bruger fin funktion fra tidligere, til at generere
+        en ny liste. Så skulle der laves en metode der "rydder" filteret. Igen opstiller
+        jeg et event på min"clear knap, som sætter mine input felter til "ingenting"
+        og genererer herefter en liste (den originale liste).
+        I ekstra opgave e, lavede jeg igen et event på en bestemt knap (brand).
+        Så finder jeg værdien fra mit input felt, som gerne skulle være et 
+        bilmærke. Herefter laver jeg en ny liste, og bruger "filter", til at 
+        finde alle biler med af det bilmærke (brand). denne nye liste bliver så
+        smidt ind i min første funktion.
+        I opgaven med at sortere ud fra make og model gør jeg brug af sort metoden.
+        Jeg sorterer faktisk direkte på det originale cars array, 
+        her kunne man nok også godt lave en ny liste ud af det oprindelige.
+        Når vores Html-element "modelId" bliver klikket udføres der en sort metode.
+        Sort metoden tager en "sammenligningsfunktion" som parameter, som sammenligner 
+        to elementer; a og b. Efterfølgende kobles der en model til hver af dem. 
+        Så bruger vi if til at afgøre om modelA er mindre end modelB, og hvis den er det
+        skal 'modelA' komme før 'modelB': altså -1. Hvis b skal komme før a skal der
+        returneres 1. 
+        
+    </div>
+
+    <script>
+
+        
+const cars = [
+  { id: 1, year: 1997, make: 'Ford', model: 'E350', price: 3000 },          
+  { id: 2, year: 1999, make: 'Chevy', model: 'Venture', price: 4900 },
+  { id: 3, year: 2000, make: 'Chevy', model: 'Venture', price: 5000 },
+  { id: 4, year: 1996, make: 'Jeep', model: 'Grand Cherokee', price: 4799 },
+  { id: 5, year: 2005, make: 'Volvo', model: 'V70', price: 44799 }
+];      
+
+        //---Opgave c---//
+        document.getElementById("priceBtn").onclick = (event) => {
+            const filterValue = parseInt(document.getElementById("num1").value);
+            const newList = cars.filter(function(car){
+                return car.price < filterValue;
+            })
+            
+            insertData(newList);
+        }
+
+
+        //---Opgave a + b---//
+        function insertData(inputArray){
+            var tbody = document.getElementById("tbody");
+
+            tbody.innerHTML = '';                        //denne linje rydder alt i vores table-body, så vi kan indsætte det nye. 
+
+            for (let i = 0; i < cars.length; i++) {
+                var row = document.createElement("tr");  //for hver bil bliver der lavet et nyt html element, her et table row: (<tr>).
+                row.innerHTML =                          //Ovenfor specificerer man typen af element der skal laves. Dette tildeles variblen 'row'
+                `<td>${inputArray[i].id}</td>         
+                <td>${inputArray[i].year}</td>
+                <td>${inputArray[i].make}</td>
+                <td>${inputArray[i].model}</td>
+                <td>${inputArray[i].price}</td>`;        //Her sættes cellerne (<td>), for hver af bilens attributer.
+                tbody.appendChild(row);                  //Her sættes den nye tabelrække, med dens celler ind i tbody
+            }
+        }
+
+        insertData(cars);
+        
+        //---opgave d---//
+        document.getElementById("clearFilter").onclick = (event) => {
+            document.getElementById("num1").value = '';
+            document.getElementById("carMake").value = '';
+            insertData(cars);
+        }
+
+        //---opgave e (Extra)---/
+        document.getElementById("makeBtn").onclick = (event) => {
+            const carMake1 = document.getElementById("carMake").value;
+            const makeList = cars.filter(function(car){
+                return car.make === carMake1;
+            })
+
+            insertData(makeList);
+        }
+
+       
+
+        //---Sortering efter Id---//
+        document.getElementById("priceId").onclick = (event) => {
+            cars.sort((a, b) => a.price - b.price); 
+            insertData(cars);
+        }
+
+        let isAscending = true; 
+
+         
+
+        //---Sortering efter model---//
+        document.getElementById("modelId").onclick = (event) => {
+
+            isAscending = !isAscending;
+
+            cars.sort((a, b)=> {
+                const modelA = a.model;
+                const modelB = b.model;
+
+                if(modelA < modelB){
+                    return isAscending ? -1 : 1;             //betyder at a bør komme før b
+                }
+                if(modelA > modelB){
+                    return isAscending ? 1 : -1;               //betyder at b bør kommme før a
+                }
+                return 0;
+            })
+            insertData(cars)
+        };
+
+       //---Sortering efter make---// 
+        document.getElementById("makeId").onclick = (event) => {
+    
+        isAscending = !isAscending;
+
+        cars.sort((a, b) => {
+            const makeA = a.make.toLowerCase(); 
+            const makeB = b.make.toLowerCase();
+
+            if (makeA < makeB) {
+                return isAscending ? -1 : 1; 
+            }
+            if (makeA > makeB) {
+                return isAscending ? 1 : -1; 
+            }
+            return 0;
+        });
+
+        insertData(cars);
+};
+
+        
+
+    </script>
+    
+</body>
+</html>
