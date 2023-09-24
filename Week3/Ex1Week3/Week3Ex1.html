@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+
+</head>
+<body>
+
+    <input id="id_field" type="text">
+    <button id = "get_all_btn">Get all</button>
+    <button id = "get_user_btn">Get User</button>
+
+    <table id = "myTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone</th>
+            </tr>
+        </thead>
+        <tbody id = "myTBody">
+
+        </tbody>
+    </table>
+    <h3>Name & phone</h3>
+    <p id = "name_id"></p>
+    <p id = "phone_id"></p>
+    <h3>Address</h3>
+    <p id = "street_id"></p>
+    <p id = "city_id"></p>
+    <p id = "zip_id"></p>
+    <p id = "lat_id"></p>
+    <p id = "lng_id"></p>
+
+    <div style = "border: 2px solid black; height: 270px; width: 450px;">
+    
+        Promises er et koncept der bruges til at håndtere asynkrone operationer
+        på en letforståelig og struktureret måde. En asynkron operation er en
+        opgave der ikke udføres øjeblikkeligt og kan tage noget tid at
+        gennemføre, f-eks. at hente data fra en fjernserver eller en database.
+        I betegnelsen "promise" ligger der også at det er et løfte om at levere det, 
+        der er blevet anmodet om, når operationen er fuldført. Når vi bruger fetch returneres
+        der et "promise". Når vi arbejder med promises bruger vi .then() og .catch(). 
+        Vi bruger .then() når vores promise er blevet opfyldt. 
+        Den første .then(), bruger vi til at kalde resultatet af vores http-anmodning. 
+        Jeg bruger og res.json()til at konvertere resultatet til Json. Det betyder at vores 
+        Http-anmodning var en succes. Det næste ,then() bruges til at håndtere resultatet af 
+        vores json-data. I dette tilfælde opretter jeg eksempelvis tble-rækker baseret 
+        på den data der blev hentet og knoverteet til json. 
+    </div>
+
+    <script src = "week3Ex1.js"></script>
+    
+</body>
+</html>

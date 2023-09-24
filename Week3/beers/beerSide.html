@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        /* Style table header */
+        th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Style table rows */
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h2>Cool Beers</h2>
+  <input type="number" id="filter-abv">
+  <Button id="abv-btn" class="btn btn-secondary">Show only beers with Abv above</button>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Tag line</th>
+        <th>Abv</th>
+        <th>IBU</th>
+      </tr>
+    </thead>
+    <tbody id="tbl1"></tbody>
+  </table>
+
+  <script src = "beers.js"></script>
+
+</body>
+</html>
